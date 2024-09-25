@@ -1,6 +1,6 @@
 # MyNumberTheoryProject
- \\Sayı teorisinin bazı başlıca işlemlerinin hesaplanmasını sağlayan program.
- Yapabildiği işlemler aşağıda:
+ Sayı teorisinin bazı başlıca işlemlerinin hesaplanmasını sağlayan program.
+ < br / > Yapabildiği işlemler aşağıda:
  1-Bir sayının asallığını test ediyor.
  2-İki sayı arasındaki asalları buluyor.
  3-İki sayıyının aralarında asallığını test ediyor.
