@@ -14,28 +14,6 @@ def asal_test(p_control):
         print(div_nums)
 
 
-def ortak_bolen_bulma(num1, num2):
-    """İki sayının ortak bölenlerini bulan fonksiyon"""
-    div_num_1 = list()
-    div_num_2 = list()
-    num = 2
-    while num < num1:
-        if num1 % num == 0:
-            div_num_1.append(num)
-        num = num + 1
-    num = 2
-    while num < num2:
-        if num2 % num == 0:
-            div_num_2.append(num)
-        num = num + 1
-    intersection = set(div_num_1).intersection(set(div_num_2))
-    if intersection == set():
-        print("Girdiğiniz sayılar aralarında asaldır.")
-    else:
-        print("Girdiğiniz sayılar aralarında asal değildir. "
-              "Ortak bölenleri aşağıda yazılı.")
-        print(list(intersection))
-
 
 def ebob_bulma(num1, num2):
     """İki sayının EBOB'unu bulan fonksiyon"""
@@ -54,6 +32,13 @@ def ebob_bulma(num1, num2):
     intersection = set(div_num_1).intersection(set(div_num_2))
     intersection_list = list(intersection)
     print(f"Girdiğiniz iki sayı için EBOB({num1},{num2}) = {max(intersection_list)} ")
+    if max(intersection_list) == 1:
+        print(f"\nBu sebeple girdiğiniz {num1} ve {num2} sayıları aralarında asaldır.")
+    else:
+        print(f"Girdiğiniz {num1} ve {num2} sayıları aralarında asal değildir.")
+        print("1 dışında ortak bölenleri:")
+        intersection_list.pop(0)
+        print(intersection_list)
 
 
 def iki_sayi_arasi_asallar(num1, num2):
@@ -109,7 +94,7 @@ def ekok_bulma(num1, num2):
     intersection = set(div_num_1).intersection(set(div_num_2))
     intersection_list = list(intersection)
     ebob = int(max(intersection_list))
-    ekok = int(ebob*(num1/ebob)*(num2/ebob))
+    ekok = int(ebob * (num1 / ebob) * (num2 / ebob))
     print(f"Girdiğiniz iki sayı için EKOK({num1},{num2}) = {ekok} ")
 
 
@@ -119,15 +104,14 @@ while run_0:
     intro_0 = ("\nHangi işlemi yapmak istersiniz?"
                "\n-Bir sayının asallığını test etmek için 'z' girin."
                "\n-İki sayı arasındaki asalları bulmak için 'x' girin."
-               "\n-İki sayının aralarında asal olup olmadığını kontrol etmek için 'c' girin."
-               "\n-İki sayının EBOB'unu bulmak için 'v' girin."
-               "\n-İki sayının EKOK'unu bulmak için 'b' girin."
+               "\n-İki sayının EBOB'unu bulmak için 'c' girin."
+               "\n-İki sayının EKOK'unu bulmak için 'v' girin."
                "\n-Çıkmak için 'q' girin."
                "\n")
 
     enter_0 = input(intro_0)
-    intro_enter_list = ["z", "x", "c", "v", "b", "q",
-                        "Z", "X", "C", "V", "B", "Q"]
+    intro_enter_list = ["z", "x", "c", "v", "q",
+                        "Z", "X", "C", "V", "Q"]
 
     run_1 = True
     while run_1:
@@ -190,26 +174,26 @@ while run_0:
     if enter_0.lower() == "c":
         run = True
         while run:
-            intro_c = ("Hangi iki sayının aralarında asallığını kontrol etmek istiyorsanız,"
+            intro_c = ("Hangi iki sayının EBOB'unu bulmak istiyorsanız,"
                        " bu iki sayıdan ilkini girin."
                        "(Çıkmak için 'q' geri gelmek için 'g' girin.)")
 
-            enter_c_1 = input(intro_c)
+            enter_v_1 = input(intro_c)
 
             try:
-                enter_v_1_num = int(enter_c_1)
-                enter_b_2 = input("İkinci sayıyı girin")
+                enter_c_1_num = int(enter_v_1)
+                enter_v_2 = input("İkinci sayıyı girin")
                 try:
-                    enter_c_2_num = int(enter_b_2)
-                    ortak_bolen_bulma(enter_v_1_num, enter_c_2_num)
+                    enter_c_2_num = int(enter_v_2)
+                    ebob_bulma(enter_c_1_num, enter_c_2_num)
                 except ValueError:
                     print("\nBelirtilen bir değer girmediniz."
                           " Tekrar deneyin.")
             except ValueError:
-                if enter_c_1.lower() == "q":
+                if enter_v_1.lower() == "q":
                     print("\nİYİ GÜNLER!")
                     quit()
-                elif enter_c_1.lower() == "g":
+                elif enter_v_1.lower() == "g":
                     run = False
                 else:
                     print("\nBelirtilen bir değer girmediniz. Tekrar deneyin.")
@@ -217,53 +201,26 @@ while run_0:
     if enter_0.lower() == "v":
         run = True
         while run:
-            intro_b = ("Hangi iki sayının EBOB'unu bulmak istiyorsanız,"
+            intro_v = ("Hangi iki sayının EBOB'unu bulmak istiyorsanız,"
                        " bu iki sayıdan ilkini girin."
                        "(Çıkmak için 'q' geri gelmek için 'g' girin.)")
 
-            enter_b_1 = input(intro_b)
+            enter_v_1 = input(intro_v)
 
             try:
-                enter_v_1_num = int(enter_b_1)
-                enter_b_2 = input("İkinci sayıyı girin")
+                enter_v_1_num = int(enter_v_1)
+                enter_v_2 = input("İkinci sayıyı girin")
                 try:
-                    enter_c_2_num = int(enter_b_2)
-                    ebob_bulma(enter_v_1_num, enter_c_2_num)
+                    enter_v_2_num = int(enter_v_2)
+                    ekok_bulma(enter_v_1_num, enter_v_2_num)
                 except ValueError:
                     print("\nBelirtilen bir değer girmediniz."
                           " Tekrar deneyin.")
             except ValueError:
-                if enter_b_1.lower() == "q":
+                if enter_v_1.lower() == "q":
                     print("\nİYİ GÜNLER!")
                     quit()
-                elif enter_b_1.lower() == "g":
-                    run = False
-                else:
-                    print("\nBelirtilen bir değer girmediniz. Tekrar deneyin.")
-
-    if enter_0.lower() == "b":
-        run = True
-        while run:
-            intro_b = ("Hangi iki sayının EBOB'unu bulmak istiyorsanız,"
-                       " bu iki sayıdan ilkini girin."
-                       "(Çıkmak için 'q' geri gelmek için 'g' girin.)")
-
-            enter_b_1 = input(intro_b)
-
-            try:
-                enter_b_1_num = int(enter_b_1)
-                enter_b_2 = input("İkinci sayıyı girin")
-                try:
-                    enter_b_2_num = int(enter_b_2)
-                    ekok_bulma(enter_b_1_num, enter_b_2_num)
-                except ValueError:
-                    print("\nBelirtilen bir değer girmediniz."
-                          " Tekrar deneyin.")
-            except ValueError:
-                if enter_b_1.lower() == "q":
-                    print("\nİYİ GÜNLER!")
-                    quit()
-                elif enter_b_1.lower() == "g":
+                elif enter_v_1.lower() == "g":
                     run = False
                 else:
                     print("\nBelirtilen bir değer girmediniz. Tekrar deneyin.")
